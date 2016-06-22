@@ -43,7 +43,7 @@ linked.insert(2, 'third');
 linked.insert(3, 'fourth');
 linked.insert(4, 'fifth');
 linked.insert(5, 'sixth');
-linked.insert(5, 'seventh');
+linked.insert(6, 'seventh');
 var length = linked.length;
 var middle = length/2;
 var remainder = middle%1;
@@ -66,8 +66,7 @@ for (var i = 0; i < middle; i++){
   console.log('j is at '+ j);
   if (i != j){
     if (i == 0){
-//       var first = linked._find(j);
-//       linked.head = first;
+      var last = linked._find(i);
       var second = linked._find(1);
       console.log('second')
       console.log(second);
@@ -76,8 +75,15 @@ for (var i = 0; i < middle; i++){
       linked.head.next = second;
       console.log('first')
       console.log(first)
-//       console.log(linked.head.next);     
       
+      last.next = null;
+      linked.insert(j, last);
+      var next_last = linked._find(j-1);
+      next_last.next = last;
+      console.log('next to last');
+      console.log(next_last)
+      console.log('last');
+      console.log(linked._find(j))
       console.log('just starting');
       console.log('j '+j+' is first.   i is '+i+' last')
       
