@@ -69,7 +69,13 @@ for (var i = 0; i < middle; i++){
 //       var first = linked._find(j);
 //       linked.head = first;
       var second = linked._find(1);
-      console.log(second)
+      console.log('second')
+      console.log(second);
+      var first = linked._find(j);
+      linked.head = first;
+      linked.head.next = second;
+      console.log('first')
+      console.log(first)
 //       console.log(linked.head.next);     
       
       console.log('just starting');
