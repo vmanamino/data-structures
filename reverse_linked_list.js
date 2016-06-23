@@ -29,9 +29,9 @@ LinkedList.prototype.insert = function(index, value) {
 LinkedList.prototype._find = function(index) {
     var node = this.head;
     for (var i=0; i<index; i++) {
-//         console.log('each node')
-//         console.log(node)
+        
         node = node.next;
+        
     }
     return node;
 };
@@ -50,65 +50,31 @@ var remainder = middle%1;
 // if (remainder !== 0){
 //   middle = Math.floor(middle);
 // }
-var count = linked.length;
-
-
-var linked_reverse = new LinkedList();
-var j = length;
+var counter = 0;
 
 var springer = 0;
 
-// console.log(linked._find(j - 1));
-
-for (var i = 0; i < middle; i++){
-  j -= 1;
-  console.log('i is at '+ i);
-  console.log('j is at '+ j);
-  if (i != j){
-    if (i == 0){
-      var last = linked._find(i);
-      var second = linked._find(1);
-      console.log('second')
-      console.log(second);
-      var first = linked._find(j);
-      linked.head = first;
-      linked.head.next = second;
-      console.log('first')
-      console.log(first)
-      
-      last.next = null;
-      linked.insert(j, last);
-      var next_last = linked._find(j-1);
-      next_last.next = last;
-      console.log('next to last');
-      console.log(next_last)
-      console.log('last');
-      console.log(linked._find(j))
-      console.log('just starting');
-      console.log('j '+j+' is first.   i is '+i+' last')
-      
-    }
-    else {      
-      
-      springer = i - 1;
-      console.log('jump back to '+ springer+' for i\.next');
-      springer = j + 1;
-      console.log('jump forward to '+springer+' for j\.next')
-    }
-    console.log('i '+i+' does not equal j '+j+'')
+var last = length - 1;
+while (counter < length){
+  var last_obj = linked._find(last);
+  linked.insert(counter, last_obj.value);
+  if (counter == last){
+    linked._find(counter).next = null;
   }
-  else {
-    console.log('i '+i+' does indeed equal j '+j+'');
-    springer = i + 1;
-    console.log('here next one forward to '+ springer)
-  }
-  console.log('i is : '+i+' while j is : '+j);
+  
+  counter++;
 }
 
-// for (var i = count - 1; i > 0; i--){
-//   var right_justified = linked._find(i)
-//   for (var j = count - 2; j >=0; j--){
-//     var right_justified_trailing = linked._find(j)
-//   }
-  
-// }
+// console.log(linked.insert(0, 'eighth'))
+// console.log(linked._find(0).value)
+counter = 0;
+while (counter < length){
+  console.log(linked._find(counter))
+  counter++;
+}
+
+
+
+
+
+
