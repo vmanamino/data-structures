@@ -24,6 +24,14 @@ HashMap.prototype.get = function(key) {
     return this._slots[index].value;
 };
 
+HashMap.prototype.get_index = function(key) {
+    var index = this._findSlot(key);
+    if (this._slots[index] === undefined) {
+        throw new Error('Key error');
+    }
+    return index;
+};
+
 HashMap.prototype.set = function(key, value) {
     var loadRatio = (this.length + this._deleted + 1) / this._capacity;
     if (loadRatio > HashMap.MAX_LOAD_RATIO) {
@@ -32,6 +40,7 @@ HashMap.prototype.set = function(key, value) {
 
     var index = this._findSlot(key);
     this._slots[index] = {
+        index: index,
         key: key,
         value: value,
         deleted: false
@@ -80,7 +89,7 @@ HashMap.prototype._resize = function(size) {
 var hash_map = new HashMap();
 console.log('initial length'+hash_map.length)
 
-var example1 = 'caabl';
+var example1 = 'cclli';
 
 var length = example1.length;
 
@@ -95,30 +104,40 @@ count = 0;
 inner = 0;
 var value = 0;
 var littera = '';
+var indices = [];
+console.log(hash_map._slots);
 while (count < length){
   var instances = hash_map.get(example1.charAt(count));
   littera = example1.charAt(count);
   inner = count
   if (!instances){
+    
     while (inner < length){
       if (littera == example1.charAt(inner)){
         value++;
-        hash_map.set(littera, value)
+        hash_map.set(littera, value);
+        if (value == 1){
+          indices.push(hash_map.get_index(littera))
+        }
+        
       }
       inner++;
     }
     value = 0;
   }
   else {
-    console.log(instances+' '+example1.charAt(count))
+    
+    console.log('multiple instances '+instances+' of '+example1.charAt(count))
   }
   
   count++;
 }
 count = 0;
-length = hash_map.length;
+
+// length = hash_map.length;
 console.log(hash_map._slots);
-// while (count < length){
-//   console.log(hash_map.get(example1.charAt(count)));
-//   count++;
-// }
+console.log(indices)
+while (count < indices.length){
+  console.log(hash_map._slots[indices[count]])
+  count++;
+}
