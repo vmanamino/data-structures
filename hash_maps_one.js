@@ -78,6 +78,47 @@ HashMap.prototype._resize = function(size) {
 };
 
 var hash_map = new HashMap();
+console.log('initial length'+hash_map.length)
 
-hash_map.set('m', 2)
-console.log(hash_map.get('m'))
+var example1 = 'caabl';
+
+var length = example1.length;
+
+var count = 0;
+
+while (count < length){
+  
+  hash_map.set(example1.charAt(count), 0)
+  count++;
+}
+count = 0;
+inner = 0;
+var value = 0;
+var littera = '';
+while (count < length){
+  var instances = hash_map.get(example1.charAt(count));
+  littera = example1.charAt(count);
+  inner = count
+  if (!instances){
+    while (inner < length){
+      if (littera == example1.charAt(inner)){
+        value++;
+        hash_map.set(littera, value)
+      }
+      inner++;
+    }
+    value = 0;
+  }
+  else {
+    console.log(instances+' '+example1.charAt(count))
+  }
+  
+  count++;
+}
+count = 0;
+length = hash_map.length;
+console.log(hash_map._slots);
+// while (count < length){
+//   console.log(hash_map.get(example1.charAt(count)));
+//   count++;
+// }
