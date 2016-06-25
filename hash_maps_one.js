@@ -29,7 +29,7 @@ HashMap.prototype.get_index = function(key) {
     if (this._slots[index] === undefined) {
         throw new Error('Key error');
     }
-    return index;
+    return this._slots[index].index;
 };
 
 HashMap.prototype.set = function(key, value) {
@@ -89,7 +89,7 @@ HashMap.prototype._resize = function(size) {
 var hash_map = new HashMap();
 console.log('initial length'+hash_map.length)
 
-var example1 = 'cclli';
+var example1 = 'admma';
 
 var length = example1.length;
 
@@ -115,14 +115,15 @@ while (count < length){
     while (inner < length){
       if (littera == example1.charAt(inner)){
         value++;
-        hash_map.set(littera, value);
+        hash_map.set(littera, value);  
         if (value == 1){
+          console.log(hash_map.get_index(littera))
           indices.push(hash_map.get_index(littera))
         }
-        
       }
       inner++;
     }
+    
     value = 0;
   }
   else {
@@ -136,8 +137,42 @@ count = 0;
 
 // length = hash_map.length;
 console.log(hash_map._slots);
-console.log(indices)
-while (count < indices.length){
-  console.log(hash_map._slots[indices[count]])
+console.log(indices);
+
+var one_two_many = 0;
+var indexes = []
+while (count < example1.length){
+  var index = hash_map.get_index(example1.charAt(count));
+  if (count == 0){
+    console.log('index zero'+index)
+    indexes.push(index)    
+  }
+  else {
+    var index_present = 0;
+    for (var i = 0; i < count; i++){
+      if(index == indexes[i]){
+        index_present++;        
+      }
+    }
+    if (index_present==0){
+      indexes.push(index);
+    }    
+  }
   count++;
+}
+console.log(indexes);
+
+count = 0;
+while (count < indexes.length){
+  if(hash_map._slots[indexes[count]].value==1){
+    one_two_many++;
+  }  
+  count++;
+}
+if (one_two_many>1){
+  console.log('your string is not a palindrom');
+    
+}
+else {
+  console.log('your string is a palindrom')
 }
