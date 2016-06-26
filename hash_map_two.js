@@ -96,32 +96,56 @@ var littera = '';
 var group = [];
 var princeps = [];
 var outer_count = 0;
-var first_word = 'east'
-while (outer_count < first_word.length){
-  littera = first_word.charAt(outer_count);
-  console.log(littera)
-  while (count < words.length){
-    var word = words[count];
-    while (inner_count < word.length){
-      var letter = word.charAt(inner_count)
-      if (letter == littera){
-        group.push(word);
-        inner_count = word.length;
-        console.log('yes')
-      }    
-      inner_count++;      
-    }  
-    inner_count = 0;
-    count++;
+// var current_word = 'east';
+
+var words = ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'];
+current_letters = [];
+hash_map.set('words', words);
+var words_length = hash_map.get('words').length;
+var hash_count = 0;
+while (hash_count < words_length){
+  console.log('this is words '+hash_count+' times around');
+  console.log(words)
+  var current_word = hash_map.get('words')[1]
+  while (outer_count < current_word.length){
+    littera = current_word.charAt(outer_count);    
+    console.log(littera);    
+    console.log('words');
+//     console.log(words);
+    while (count < words.length){
+      var word = words[count];
+      while (inner_count < word.length){
+        var letter = word.charAt(inner_count)
+        if (letter == littera){
+          group.push(word);
+          inner_count = word.length;
+          console.log('yes')
+        }    
+        inner_count++;      
+      }  
+      inner_count = 0;
+      
+      count++;
+    }
+    count = 0;
+    if(group){
+      hash_map.set(current_word, group)
+    }
+    words = hash_map.get(current_word)
+    console.log('current word is '+current_word)
+    console.log(words)
+    outer_count++;
+    group = []
+    
   }
-  count = 0;
-  if(group){
-    princeps.push(group)
-  }
-  outer_count++;
-  group = []
+  console.log('get rid of thse words');
+  console.log(words)
+  current_letters = [];
+//   outer_count = 0;
+  hash_count++;
 }
 console.log(princeps)
+console.log(hash_map.get('cars'))
 // while(count < words.length){
 //   var word = words[count];
 //   inner_count = 0;
