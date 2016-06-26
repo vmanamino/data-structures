@@ -103,15 +103,17 @@ current_letters = [];
 hash_map.set('words', words);
 var words_length = hash_map.get('words').length;
 var hash_count = 0;
-while (hash_count < words_length){
+while (words_length){
   console.log('this is words '+hash_count+' times around');
   console.log(words)
-  var current_word = hash_map.get('words')[1]
+  var current_word = hash_map.get('words')[0]
+  console.log('current word');
+  console.log(current_word)
   while (outer_count < current_word.length){
     littera = current_word.charAt(outer_count);    
     console.log(littera);    
     console.log('words');
-//     console.log(words);
+    console.log(words);
     while (count < words.length){
       var word = words[count];
       while (inner_count < word.length){
@@ -139,13 +141,43 @@ while (hash_count < words_length){
     
   }
   console.log('get rid of thse words');
-  console.log(words)
+  console.log(words)  
+  princeps.push(words);
+  var current_words_values = hash_map.get('words');
+  var new_word_values = [];
+  var match = 0;
+  var word_value = '';
+  for (var i = 0; i < current_words_values.length; i++){
+    word_value = current_words_values[i];
+    console.log('word value');
+    console.log(word_value)
+    for (var j = 0; j < words.length; j++){
+      if (word_value == words[j]){
+        match++;
+      }
+    }
+    if (match == 0){
+      new_word_values.push(word_value);
+    }
+    else {
+      match = 0;
+    }
+  }
+  console.log('new word values');
+  console.log(new_word_values);
+  hash_map.set('words', new_word_values);
   current_letters = [];
-//   outer_count = 0;
+  words_length = hash_map.get('words').length;
+//   console.log('new words');
+  words = hash_map.get('words');
+  console.log('current length');
+  console.log(words_length)
+  outer_count = 0;
   hash_count++;
 }
 console.log(princeps)
-console.log(hash_map.get('cars'))
+// console.log(hash_map.get('east'))
+console.log(hash_map.get('words'))
 // while(count < words.length){
 //   var word = words[count];
 //   inner_count = 0;
