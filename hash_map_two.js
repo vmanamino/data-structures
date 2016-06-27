@@ -176,11 +176,5 @@ while (words_length){
   hash_count++;
 }
 console.log(princeps)
-// console.log(hash_map.get('east'))
-console.log(hash_map.get('words'))
-// while(count < words.length){
-//   var word = words[count];
-//   inner_count = 0;
-//   while ()
-//   count++;
-// }
+
+
