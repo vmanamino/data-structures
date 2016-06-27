@@ -87,16 +87,15 @@ HashMap.prototype._resize = function(size) {
 };
 
 var hash_map = new HashMap();
-console.log('initial length'+hash_map.length)
 
 var example1 = 'admma';
+console.log(example1);
 
 var length = example1.length;
 
 var count = 0;
 
-while (count < length){
-  
+while (count < length){  
   hash_map.set(example1.charAt(count), 0)
   count++;
 }
@@ -111,41 +110,32 @@ while (count < length){
   littera = example1.charAt(count);
   inner = count
   if (!instances){
-    
     while (inner < length){
       if (littera == example1.charAt(inner)){
         value++;
         hash_map.set(littera, value);  
-        if (value == 1){
-          console.log(hash_map.get_index(littera))
-          indices.push(hash_map.get_index(littera))
+        if (value == 1){          
+          indices.push(hash_map.get_index(littera));
         }
       }
       inner++;
     }
-    
     value = 0;
   }
-  else {
-    
-    console.log('multiple instances '+instances+' of '+example1.charAt(count))
-  }
-  
+  // else {
+  //   console.log('multiple instances '+instances+' of '+example1.charAt(count))
+  // }
   count++;
 }
+
 count = 0;
-
-// length = hash_map.length;
-console.log(hash_map._slots);
-console.log(indices);
-
 var one_two_many = 0;
-var indexes = []
+var indexes = [];
+
 while (count < example1.length){
   var index = hash_map.get_index(example1.charAt(count));
   if (count == 0){
-    console.log('index zero'+index)
-    indexes.push(index)    
+    indexes.push(index);    
   }
   else {
     var index_present = 0;
@@ -160,9 +150,9 @@ while (count < example1.length){
   }
   count++;
 }
-console.log(indexes);
 
 count = 0;
+
 while (count < indexes.length){
   if(hash_map._slots[indexes[count]].value==1){
     one_two_many++;
@@ -174,5 +164,5 @@ if (one_two_many>1){
     
 }
 else {
-  console.log('your string is a palindrom')
+  console.log('your string is a palindrom');
 }
