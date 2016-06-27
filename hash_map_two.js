@@ -87,9 +87,6 @@ HashMap.prototype._resize = function(size) {
 };
 
 var hash_map = new HashMap();
-
-var words = ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'];
-
 var count = 0;
 var inner_count = 0;
 var littera = '';
@@ -99,21 +96,15 @@ var outer_count = 0;
 // var current_word = 'east';
 
 var words = ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'];
+console.log(words);
 current_letters = [];
 hash_map.set('words', words);
 var words_length = hash_map.get('words').length;
 var hash_count = 0;
 while (words_length){
-  console.log('this is words '+hash_count+' times around');
-  console.log(words)
   var current_word = hash_map.get('words')[0]
-  console.log('current word');
-  console.log(current_word)
   while (outer_count < current_word.length){
-    littera = current_word.charAt(outer_count);    
-    console.log(littera);    
-    console.log('words');
-    console.log(words);
+    littera = current_word.charAt(outer_count);   
     while (count < words.length){
       var word = words[count];
       while (inner_count < word.length){
@@ -121,7 +112,6 @@ while (words_length){
         if (letter == littera){
           group.push(word);
           inner_count = word.length;
-          console.log('yes')
         }    
         inner_count++;      
       }  
@@ -131,17 +121,13 @@ while (words_length){
     }
     count = 0;
     if(group){
-      hash_map.set(current_word, group)
+      hash_map.set(current_word, group);
     }
-    words = hash_map.get(current_word)
-    console.log('current word is '+current_word)
-    console.log(words)
+    words = hash_map.get(current_word);
     outer_count++;
     group = []
     
   }
-  console.log('get rid of thse words');
-  console.log(words)  
   princeps.push(words);
   var current_words_values = hash_map.get('words');
   var new_word_values = [];
@@ -149,8 +135,6 @@ while (words_length){
   var word_value = '';
   for (var i = 0; i < current_words_values.length; i++){
     word_value = current_words_values[i];
-    console.log('word value');
-    console.log(word_value)
     for (var j = 0; j < words.length; j++){
       if (word_value == words[j]){
         match++;
@@ -163,15 +147,10 @@ while (words_length){
       match = 0;
     }
   }
-  console.log('new word values');
-  console.log(new_word_values);
   hash_map.set('words', new_word_values);
   current_letters = [];
   words_length = hash_map.get('words').length;
-//   console.log('new words');
   words = hash_map.get('words');
-  console.log('current length');
-  console.log(words_length)
   outer_count = 0;
   hash_count++;
 }
