@@ -91,7 +91,7 @@ var count = 0;
 var inner_count = 0;
 var littera = '';
 var group = [];
-var princeps = [];
+var digest = [];
 var outer_count = 0;
 // var current_word = 'east';
 
@@ -128,7 +128,7 @@ while (words_length){
     group = []
     
   }
-  princeps.push(words);
+  digest.push(words);
   var current_words_values = hash_map.get('words');
   var new_word_values = [];
   var match = 0;
@@ -154,6 +154,5 @@ while (words_length){
   outer_count = 0;
   hash_count++;
 }
-console.log(princeps)
-
+console.log(digest)
 
