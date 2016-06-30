@@ -109,3 +109,26 @@ BinarySearchTree.prototype._findMin = function() {
     return this.left._findMin();
 };
 
+var bst = new BinarySearchTree(8, 8)
+bst.insert(3, 3)
+bst.insert(1, 1)
+bst.insert(6, 6)
+bst.insert(10, 10)
+bst.insert(14, 14);
+var current = '';
+
+var checkValues = function(node){
+  
+  if (node.right && node.left){
+    if(node.key < node.right.key){
+      return node.right;
+    }
+  }
+  return null;
+}
+current = bst;
+while (current){
+  console.log('check values')
+  current = checkValues(current);
+  console.log(current)
+}
