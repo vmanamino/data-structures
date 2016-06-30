@@ -120,15 +120,23 @@ var current = '';
 var checkValues = function(node){
   
   if (node.right && node.left){
-    if(node.key < node.right.key){
-      return node.right;
+    if (node.key < node.right.key && node.key > node.left.key){
+      return node.key      
+    }
+    
+  }
+  else if (node.right){
+    if (node.key < node.right){
+        
     }
   }
-  return null;
+  else if (node.left){
+    if (node.key > node.left){
+    }
+  }
+//   return null;
 }
 current = bst;
-while (current){
-  console.log('check values')
-  current = checkValues(current);
-  console.log(current)
-}
+console.log(checkValues(current))
+
+
