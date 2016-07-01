@@ -127,6 +127,9 @@ var checkValues = function(node){
       checkValues(node.left)
       
     }
+    else {
+      message = 'not a binary tree'
+    }
     
   }
   if (node.right && !node.left){
@@ -134,6 +137,7 @@ var checkValues = function(node){
         console.log('right node '+node.key+' of previous node '+node.parent.key+' this is binary') 
         console.log(node.key)
         if (node.right){
+          console.log('has right node '+node.right.key)
           checkValues(node.right);
         }
         else {
@@ -148,7 +152,7 @@ var checkValues = function(node){
     }
   }
   if ((!node.right && !node.left) && node.parent){
-    console.log('parent of key '+node.key)
+    console.log('parent of key '+node.key);
     message = 'last node key '+node.key+' is greater than parent '+node.parent.key; 
   }
   return message;
