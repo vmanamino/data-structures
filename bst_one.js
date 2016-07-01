@@ -119,41 +119,31 @@ bst.insert(13, 13);
 var current = '';
 var message = '';
 var checkValues = function(node){
-  console.log(node.key)
-  if (node.right && node.left){
-    if (node.key < node.right.key && node.key > node.left.key){
-      console.log('node '+node.key+' is binary')
-      checkValues(node.right)
-      checkValues(node.left)
+  console.log('passed '+node.key)
+  if (node.right || node.left){
+    console.log('checked '+node.key)
+    if (node.right){
+      console.log('node right '+node.right.key)
+      if (node.key < node.right.key){
+        checkValues(node.right);        
+      }    
+      else if (node.key > node.right.key){
+        message = 'not a binary tree';
+      }     
+    }
+    if (node.left){
+      console.log('node left '+node.left.key)
+      if (node.key > node.left.key){
+        checkValues(node.left);
+      }      
+      else if (node.key < node.left.key) {
+        message = 'not a binary tree';
+      }
       
     }
-    else {
-      message = 'not a binary tree'
-    }
-    
-  }
-  if (node.right && !node.left){
-    if (node.key < node.right.key){
-        console.log('right node '+node.key+' of previous node '+node.parent.key+' this is binary') 
-        console.log(node.key)
-        if (node.right){
-          console.log('has right node '+node.right.key)
-          checkValues(node.right);
-        }
-        else {
-          message = "right "+node.key;
-        }
-    }
-  }
-  if (node.left && !node.right){    
-    if (node.key > node.left.key){
-      console.log('node left '+node.left.key)
-      checkValues(node.left)
-    }
-  }
-  if ((!node.right && !node.left) && node.parent){
-    console.log('parent of key '+node.key);
-    message = 'last node key '+node.key+' is greater than parent '+node.parent.key; 
+  }  
+  else {
+    message = 'tree is binary'
   }
   return message;
 }
